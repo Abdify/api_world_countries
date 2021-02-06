@@ -1,4 +1,4 @@
-fetch('https://restcountries.eu/rest/v2/all')//?fields=name;capital;currencies;region
+fetch('https://restcountries.eu/rest/v2/all')//?fields=flag;name;capital;currencies;region;language;alpha3Code;
 .then( response => response.json())
 .then(data => {
     
@@ -17,14 +17,14 @@ fetch('https://restcountries.eu/rest/v2/all')//?fields=name;capital;currencies;r
 
 
 function sort(data, sortBy){
-            console.log(sortBy, 'clicked')
-        data.sort((a, b) => {
-            if(a[sortBy] < b[sortBy]) return -1;
-            if(a[sortBy] > b[sortBy]) return 1;
-            return 0;
-        });
-        removeData();
-        displayData(data);
+    console.log(sortBy, 'clicked')
+    data.sort((a, b) => {
+        if(a[sortBy] < b[sortBy]) return -1;
+        if(a[sortBy] > b[sortBy]) return 1;
+        return 0;
+    });
+    removeData();
+    displayData(data);
 }
 
 
@@ -35,9 +35,9 @@ function removeData(){
 
 function displayData(data){
     const countriesList = document.getElementById('countriesList');
-
+    //th
     const tr = document.createElement('tr');
-    const ths = ['Flag', 'Country', 'Capital', 'Language', 'Continent']
+    const ths = ['Flag', 'Country', 'Capital', 'Language', 'Continent'];
     ths.forEach(element => {
         const th = document.createElement('th');
         th.innerText = element;
@@ -45,7 +45,7 @@ function displayData(data){
     });
     countriesList.appendChild(tr);
 
-
+    //td
     for (let i = 0; i < data.length; i++) {
         const country = data[i];
         const tr = document.createElement('tr');
